@@ -1,0 +1,736 @@
+/* ==========================================
+   AI Placement Predictor
+   Modern Professional UI
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    background:linear-gradient(135deg,#0f172a,#1e293b,#2563eb);
+
+    color:#fff;
+
+    overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+
+    background:rgba(15,23,42,.85)!important;
+
+    backdrop-filter:blur(15px);
+
+    transition:.4s;
+
+    padding:15px 0;
+}
+
+.navbar-brand{
+
+    font-size:1.5rem;
+
+    font-weight:700;
+}
+
+.nav-link{
+
+    color:#fff!important;
+
+    margin:0 10px;
+
+    transition:.3s;
+}
+
+.nav-link:hover{
+
+    color:#38bdf8!important;
+
+    transform:translateY(-2px);
+}
+
+/* Buttons */
+
+.btn{
+
+    border-radius:50px;
+
+    transition:.35s;
+
+    font-weight:600;
+}
+
+.btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.3);
+}
+
+/* ================= HERO ================= */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    padding-top:90px;
+}
+
+.hero h1{
+
+    font-size:3.8rem;
+
+    font-weight:800;
+
+    line-height:1.2;
+}
+
+.hero p{
+
+    font-size:1.15rem;
+
+    color:#d1d5db;
+}
+
+.hero-image{
+
+    animation:float 4s ease-in-out infinite;
+
+    max-width:420px;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-18px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+}
+
+/* Statistics */
+
+.hero .row h2{
+
+    font-size:2rem;
+
+    font-weight:700;
+}
+
+.hero small{
+
+    color:#cbd5e1;
+}
+/* ==========================================
+   DASHBOARD
+========================================== */
+
+#dashboard{
+    padding:80px 0;
+}
+
+.dashboard-card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:20px;
+
+    color:#fff;
+
+    transition:.4s;
+
+    overflow:hidden;
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 25px 40px rgba(0,0,0,.35);
+
+    background:rgba(255,255,255,.12);
+}
+
+.dashboard-card .card-body{
+
+    padding:35px;
+}
+
+.icon-box{
+
+    width:80px;
+
+    height:80px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:30px;
+
+    color:#fff;
+
+    margin-bottom:20px;
+}
+
+.dashboard-card h2{
+
+    font-size:2.5rem;
+
+    font-weight:700;
+}
+
+.dashboard-card p{
+
+    color:#ddd;
+
+    margin-top:10px;
+
+    font-size:16px;
+}
+
+/* ==========================================
+   CHARTS
+========================================== */
+
+canvas{
+
+    width:100%!important;
+
+    max-height:350px;
+}
+
+.card{
+
+    border:none;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    transition:.35s;
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 20px 35px rgba(0,0,0,.25);
+}
+
+.card-header{
+
+    font-weight:600;
+
+    font-size:18px;
+}
+
+/* ==========================================
+   PREDICTION CARD
+========================================== */
+
+.prediction-card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:22px;
+
+    color:#fff;
+}
+
+.prediction-card .card-header{
+
+    border:none;
+
+    padding:18px 25px;
+
+    font-size:22px;
+
+    font-weight:700;
+}
+
+.prediction-card .card-body{
+
+    padding:35px;
+}
+
+/* ==========================================
+   INPUT FIELDS
+========================================== */
+
+.form-control{
+
+    border-radius:12px;
+
+    border:2px solid transparent;
+
+    padding:15px;
+
+    font-size:16px;
+
+    transition:.35s;
+}
+
+.form-control:focus{
+
+    border-color:#38bdf8;
+
+    box-shadow:0 0 15px rgba(56,189,248,.35);
+}
+
+.form-label{
+
+    font-weight:600;
+
+    margin-bottom:8px;
+}
+
+/* ==========================================
+   PREDICT BUTTON
+========================================== */
+
+.prediction-card button{
+
+    height:55px;
+
+    border-radius:14px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:.35s;
+}
+
+.prediction-card button:hover{
+
+    transform:scale(1.03);
+
+    box-shadow:0 15px 25px rgba(13,110,253,.35);
+}
+
+/* ==========================================
+   RESULT
+========================================== */
+
+.progress{
+
+    height:28px;
+
+    border-radius:30px;
+
+    background:#dbeafe;
+
+    overflow:hidden;
+}
+
+.progress-bar{
+
+    font-size:14px;
+
+    font-weight:700;
+}
+
+.alert{
+
+    border-radius:15px;
+}
+/* ==========================================
+   HISTORY SECTION
+========================================== */
+
+#history{
+
+    padding:80px 0;
+
+}
+
+.table{
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    background:#fff;
+
+}
+
+.table thead{
+
+    background:#0f172a;
+
+    color:#fff;
+
+}
+
+.table th{
+
+    text-align:center;
+
+    vertical-align:middle;
+
+    font-weight:600;
+
+}
+
+.table td{
+
+    text-align:center;
+
+    vertical-align:middle;
+
+}
+
+.table tbody tr{
+
+    transition:.3s;
+
+}
+
+.table tbody tr:hover{
+
+    background:#eef6ff;
+
+    transform:scale(1.01);
+
+}
+
+/* ==========================================
+   SEARCH BOX
+========================================== */
+
+#historySearch{
+
+    border-radius:50px;
+
+    padding:12px 20px;
+
+    border:2px solid #2563eb;
+
+    transition:.3s;
+
+}
+
+#historySearch:focus{
+
+    box-shadow:0 0 12px rgba(37,99,235,.3);
+
+}
+
+/* ==========================================
+   BADGES
+========================================== */
+
+.badge{
+
+    padding:10px 15px;
+
+    font-size:14px;
+
+    border-radius:30px;
+
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer{
+
+    background:#0f172a;
+
+    color:white;
+
+}
+
+footer h4{
+
+    font-weight:700;
+
+}
+
+footer p{
+
+    color:#d1d5db;
+
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#1e293b;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#38bdf8;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#0ea5e9;
+
+}
+
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+.card{
+
+    animation:fadeUp .8s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* Floating Effect */
+
+.hero-image{
+
+    animation:floatImage 4s ease-in-out infinite;
+
+}
+
+@keyframes floatImage{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-18px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+.hero{
+
+text-align:center;
+
+padding-top:120px;
+
+}
+
+.hero h1{
+
+font-size:2.6rem;
+
+}
+
+.hero-image{
+
+margin-top:40px;
+
+max-width:320px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.dashboard-card{
+
+margin-bottom:20px;
+
+}
+
+.card{
+
+margin-bottom:20px;
+
+}
+
+.hero h1{
+
+font-size:2.2rem;
+
+}
+
+.navbar-brand{
+
+font-size:20px;
+
+}
+
+.btn{
+
+font-size:15px;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.hero h1{
+
+font-size:1.9rem;
+
+}
+
+.display-1{
+
+font-size:4rem;
+
+}
+
+.table{
+
+font-size:13px;
+
+}
+
+footer{
+
+text-align:center;
+
+}
+
+}
+
+/* ==========================================
+   GLASS EFFECT
+========================================== */
+
+.glass{
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(15px);
+
+border:1px solid rgba(255,255,255,.2);
+
+border-radius:20px;
+
+}
+
+/* ==========================================
+   HOVER EFFECTS
+========================================== */
+
+.card:hover{
+
+transform:translateY(-10px);
+
+transition:.35s;
+
+}
+
+.btn-primary{
+
+background:linear-gradient(135deg,#2563eb,#38bdf8);
+
+border:none;
+
+}
+
+.btn-success{
+
+background:linear-gradient(135deg,#10b981,#34d399);
+
+border:none;
+
+}
+
+.btn-danger{
+
+background:linear-gradient(135deg,#ef4444,#f87171);
+
+border:none;
+
+}
+
+.btn-info{
+
+background:linear-gradient(135deg,#0ea5e9,#38bdf8);
+
+border:none;
+
+color:white;
+
+}
+
+/* ==========================================
+   END
+========================================== */
