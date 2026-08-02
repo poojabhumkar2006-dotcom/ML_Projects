@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Placement Predictor</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- Navbar -->
+<!-- ========================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark shadow fixed-top">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="/">
+
+            <i class="fa-solid fa-graduation-cap"></i>
+
+            AI Placement Predictor
+
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav ms-auto align-items-center">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#dashboard">Dashboard</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#prediction">Prediction</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#history">History</a>
+                </li>
+
+                <li class="nav-item ms-3">
+
+                    <a href="/download" class="btn btn-success">
+
+                        <i class="fa-solid fa-download"></i>
+
+                        Download
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item ms-2">
+
+                    <a href="/clear" class="btn btn-danger">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        Clear
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- ========================= -->
+<!-- Hero Section -->
+<!-- ========================= -->
+
+<section class="hero d-flex align-items-center" id="home">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6"
+                 data-aos="fade-right">
+
+                <span class="badge bg-info text-dark px-3 py-2">
+
+                    🤖 AI Powered Machine Learning
+
+                </span>
+
+                <h1 class="display-4 fw-bold mt-4">
+
+                    Predict Your
+
+                    <span class="text-info">
+
+                        Campus Placement
+
+                    </span>
+
+                    Instantly
+
+                </h1>
+
+                <p class="lead mt-4">
+
+                    Enter your CGPA, IQ and Profile Score to predict placement chances using Machine Learning.
+
+                </p>
+
+                <div class="mt-4">
+
+                    <a href="#prediction"
+                       class="btn btn-info btn-lg me-3">
+
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                        Predict Now
+
+                    </a>
+
+                    <a href="#dashboard"
+                       class="btn btn-outline-light btn-lg">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                        Dashboard
+
+                    </a>
+
+                </div>
+
+                <div class="row mt-5">
+
+                    <div class="col-4 text-center">
+
+                        <h2 class="text-info">98%</h2>
+
+                        <small>Accuracy</small>
+
+                    </div>
+
+                    <div class="col-4 text-center">
+
+                        <h2 class="text-success">15K+</h2>
+
+                        <small>Predictions</small>
+
+                    </div>
+
+                    <div class="col-4 text-center">
+
+                        <h2 class="text-warning">24×7</h2>
+
+                        <small>Support</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 text-center"
+                 data-aos="fade-left">
+
+                <img
+                    src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png"
+                    class="img-fluid hero-image"
+                    alt="AI Illustration">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ========================================= -->
+<!-- Dashboard Section -->
+<!-- ========================================= -->
+
+<section id="dashboard" class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">
+
+                <i class="fa-solid fa-chart-line text-primary"></i>
+
+                Dashboard Analytics
+
+            </h2>
+
+            <p class="text-muted">
+
+                Live statistics generated from prediction history
+
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <!-- Total Predictions -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card dashboard-card border-0 shadow-lg h-100">
+
+                    <div class="card-body text-center">
+
+                        <div class="icon-box bg-primary">
+
+                            <i class="fa-solid fa-users"></i>
+
+                        </div>
+
+                        <h2 class="counter">
+
+                            {{ total_predictions }}
+
+                        </h2>
+
+                        <p>Total Predictions</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Placed -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card dashboard-card border-0 shadow-lg h-100">
+
+                    <div class="card-body text-center">
+
+                        <div class="icon-box bg-success">
+
+                            <i class="fa-solid fa-user-check"></i>
+
+                        </div>
+
+                        <h2 class="counter">
+
+                            {{ placed }}
+
+                        </h2>
+
+                        <p>Placed</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Not Placed -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card dashboard-card border-0 shadow-lg h-100">
+
+                    <div class="card-body text-center">
+
+                        <div class="icon-box bg-danger">
+
+                            <i class="fa-solid fa-user-xmark"></i>
+
+                        </div>
+
+                        <h2 class="counter">
+
+                            {{ not_placed }}
+
+                        </h2>
+
+                        <p>Not Placed</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Placement Rate -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card dashboard-card border-0 shadow-lg h-100">
+
+                    <div class="card-body text-center">
+
+                        <div class="icon-box bg-warning">
+
+                            <i class="fa-solid fa-percent"></i>
+
+                        </div>
+
+                        <h2>
+
+                            {{ placement_rate }}%
+
+                        </h2>
+
+                        <p>Placement Rate</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================================= -->
+        <!-- Charts -->
+        <!-- ================================= -->
+
+        <div class="row mt-5">
+
+            <!-- Pie Chart -->
+
+            <div class="col-lg-6 mb-4">
+
+                <div class="card shadow-lg border-0">
+
+                    <div class="card-header bg-white">
+
+                        <h5>
+
+                            <i class="fa-solid fa-chart-pie text-primary"></i>
+
+                            Placement Distribution
+
+                        </h5>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <canvas id="pieChart"></canvas>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Bar Chart -->
+
+            <div class="col-lg-6 mb-4">
+
+                <div class="card shadow-lg border-0">
+
+                    <div class="card-header bg-white">
+
+                        <h5>
+
+                            <i class="fa-solid fa-chart-column text-success"></i>
+
+                            Placement Overview
+
+                        </h5>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <canvas id="barChart"></canvas>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Line Chart -->
+
+        <div class="row">
+
+            <div class="col-12">
+
+                <div class="card shadow-lg border-0">
+
+                    <div class="card-header bg-white">
+
+                        <h5>
+
+                            <i class="fa-solid fa-chart-line text-info"></i>
+
+                            Prediction Trend
+
+                        </h5>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <canvas id="lineChart"></canvas>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ========================================= -->
+<!-- AI Prediction Section -->
+<!-- ========================================= -->
+
+<section id="prediction" class="py-5">
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Prediction Form -->
+
+            <div class="col-lg-6 mb-4">
+
+                <div class="card shadow-lg border-0 prediction-card">
+
+                    <div class="card-header bg-primary text-white">
+
+                        <h3 class="mb-0">
+
+                            <i class="fa-solid fa-robot"></i>
+
+                            AI Placement Prediction
+
+                        </h3>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <form action="/predict" method="POST">
+
+                            <!-- CGPA -->
+
+                            <div class="mb-3">
+
+                                <label class="form-label fw-semibold">
+
+                                    <i class="fa-solid fa-graduation-cap"></i>
+
+                                    CGPA
+
+                                </label>
+
+                                <input
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
+                                    max="10"
+                                    class="form-control form-control-lg"
+                                    name="cgpa"
+                                    placeholder="Enter your CGPA"
+                                    required>
+
+                            </div>
+
+                            <!-- IQ -->
+
+                            <div class="mb-3">
+
+                                <label class="form-label fw-semibold">
+
+                                    <i class="fa-solid fa-brain"></i>
+
+                                    IQ Score
+
+                                </label>
+
+                                <input
+                                    type="number"
+                                    min="0"
+                                    max="200"
+                                    class="form-control form-control-lg"
+                                    name="iq"
+                                    placeholder="Enter IQ Score"
+                                    required>
+
+                            </div>
+
+                            <!-- Profile Score -->
+
+                            <div class="mb-4">
+
+                                <label class="form-label fw-semibold">
+
+                                    <i class="fa-solid fa-user-check"></i>
+
+                                    Profile Score
+
+                                </label>
+
+                                <input
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    class="form-control form-control-lg"
+                                    name="profile_score"
+                                    placeholder="Enter Profile Score"
+                                    required>
+
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary btn-lg w-100">
+
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                                Predict Placement
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Prediction Result -->
+
+            <div class="col-lg-6">
+
+                <div class="card shadow-lg border-0 prediction-card h-100">
+
+                    <div class="card-header bg-success text-white">
+
+                        <h3 class="mb-0">
+
+                            <i class="fa-solid fa-chart-simple"></i>
+
+                            Prediction Result
+
+                        </h3>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        {% if result %}
+
+                        <div class="text-center">
+
+                            {% if result == "Placed" %}
+
+                            <i class="fa-solid fa-circle-check text-success display-1 mb-3"></i>
+
+                            <h2 class="text-success">
+
+                                {{ result }}
+
+                            </h2>
+
+                            {% else %}
+
+                            <i class="fa-solid fa-circle-xmark text-danger display-1 mb-3"></i>
+
+                            <h2 class="text-danger">
+
+                                {{ result }}
+
+                            </h2>
+
+                            {% endif %}
+
+                        </div>
+
+                        <!-- Confidence -->
+
+                        {% if confidence != "N/A" %}
+
+                        <h5 class="mt-4">
+
+                            Confidence Score
+
+                        </h5>
+
+                        <div class="progress" style="height:25px;">
+
+                            <div
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-info"
+                                role="progressbar"
+                                style="width: {{ confidence }}%;">
+
+                                {{ confidence }}%
+
+                            </div>
+
+                        </div>
+
+                        {% endif %}
+
+                        <!-- Recommendation -->
+
+                        {% if recommendation %}
+
+                        <div class="alert alert-info mt-4">
+
+                            <h5>
+
+                                <i class="fa-solid fa-lightbulb"></i>
+
+                                AI Recommendation
+
+                            </h5>
+
+                            <p class="mb-0">
+
+                                {{ recommendation }}
+
+                            </p>
+
+                        </div>
+
+                        {% endif %}
+
+                        {% else %}
+
+                        <div class="text-center py-5">
+
+                            <i class="fa-solid fa-microchip display-1 text-secondary mb-3"></i>
+
+                            <h4>
+
+                                Waiting for Prediction
+
+                            </h4>
+
+                            <p class="text-muted">
+
+                                Enter your details and click <b>Predict Placement</b>.
+
+                            </p>
+
+                        </div>
+
+                        {% endif %}
+
+                        {% if error %}
+
+                        <div class="alert alert-danger mt-4">
+
+                            {{ error }}
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ========================================= -->
+<!-- Prediction History -->
+<!-- ========================================= -->
+
+<section id="history" class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">
+
+                <i class="fa-solid fa-clock-rotate-left text-primary"></i>
+
+                Prediction History
+
+            </h2>
+
+            <p class="text-muted">
+
+                View all previous placement predictions
+
+            </p>
+
+        </div>
+
+        <div class="card border-0 shadow-lg">
+
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center flex-wrap">
+
+                <h4 class="mb-2 mb-md-0">
+
+                    <i class="fa-solid fa-table"></i>
+
+                    History
+
+                </h4>
+
+                <div>
+
+                    <a href="/download" class="btn btn-success btn-sm">
+
+                        <i class="fa-solid fa-download"></i>
+
+                        Download CSV
+
+                    </a>
+
+                    <a href="/clear" class="btn btn-danger btn-sm ms-2">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        Clear
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="card-body">
+
+                {% if history %}
+
+                <!-- Search -->
+
+                <div class="row mb-3">
+
+                    <div class="col-md-4 ms-auto">
+
+                        <input
+                            type="text"
+                            id="historySearch"
+                            class="form-control"
+                            placeholder="Search History...">
+
+                    </div>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover table-striped align-middle" id="historyTable">
+
+                        <thead class="table-dark">
+
+                            <tr>
+
+                                <th>#</th>
+                                <th>CGPA</th>
+                                <th>IQ</th>
+                                <th>Profile</th>
+                                <th>Prediction</th>
+                                <th>Confidence</th>
+                                <th>Date & Time</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for row in history %}
+
+                            <tr>
+
+                                <td>{{ loop.index }}</td>
+
+                                <td>{{ row[0] }}</td>
+
+                                <td>{{ row[1] }}</td>
+
+                                <td>{{ row[2] }}</td>
+
+                                <td>
+
+                                    {% if row[3] == "Placed" %}
+
+                                    <span class="badge bg-success">
+
+                                        <i class="fa-solid fa-circle-check"></i>
+
+                                        Placed
+
+                                    </span>
+
+                                    {% else %}
+
+                                    <span class="badge bg-danger">
+
+                                        <i class="fa-solid fa-circle-xmark"></i>
+
+                                        Not Placed
+
+                                    </span>
+
+                                    {% endif %}
+
+                                </td>
+
+                                <td>
+
+                                    {% if row[4] != "N/A" %}
+
+                                    <div class="progress" style="height:22px;">
+
+                                        <div
+                                            class="progress-bar bg-info progress-bar-striped progress-bar-animated"
+                                            role="progressbar"
+                                            style="width: {{ row[4] }}%;">
+
+                                            {{ row[4] }}%
+
+                                        </div>
+
+                                    </div>
+
+                                    {% else %}
+
+                                    N/A
+
+                                    {% endif %}
+
+                                </td>
+
+                                <td>
+
+                                    {{ row[5] }}
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                {% else %}
+
+                <div class="text-center py-5">
+
+                    <i class="fa-solid fa-folder-open fa-5x text-secondary mb-4"></i>
+
+                    <h3>
+
+                        No Prediction History
+
+                    </h3>
+
+                    <p class="text-muted">
+
+                        Make your first prediction to see the history here.
+
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- Footer -->
+<!-- ========================================= -->
+
+<footer class="bg-dark text-white py-4 mt-5">
+
+    <div class="container text-center">
+
+        <h4>
+
+            <i class="fa-solid fa-graduation-cap"></i>
+
+            AI Placement Predictor
+
+        </h4>
+
+        <p class="mb-2">
+
+            Developed using Flask • Python • Machine Learning • Bootstrap 5
+
+        </p>
+
+        <small>
+
+            © 2026 All Rights Reserved | Designed by Pooja D. Bhumkar
+
+        </small>
+
+    </div>
+
+</footer>
+
+<!-- Bootstrap -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- AOS -->
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+
+AOS.init({
+    duration:1000,
+    once:true
+});
+
+</script>
+
+<!-- Custom JavaScript -->
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
