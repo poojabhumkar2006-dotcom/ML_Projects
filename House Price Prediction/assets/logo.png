@@ -1,0 +1,4 @@
+st.image(
+    "https://cdn-icons-png.flaticon.com/512/609/609803.png",
+    width=100
+)
