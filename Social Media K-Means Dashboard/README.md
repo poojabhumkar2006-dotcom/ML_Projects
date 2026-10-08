@@ -1,4 +1,5 @@
 📊 Social Media K-Means Clustering Dashboard
+#---------------------------
 An interactive Streamlit dashboard for analyzing and clustering social media post engagement data using the K-Means Clustering algorithm.
 The project provides interactive visualizations, cluster analysis, PCA visualization, the Elbow Method, and a filtered data explorer.
 🚀 Features
